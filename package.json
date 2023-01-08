@@ -1,0 +1,48 @@
+{
+  "name": "piccolo",
+  "version": "0.0.1",
+  "description": "A minimal, type-safe Electron data store library",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean --sourcemap",
+    "dev": "pnpm run build -- --watch",
+    "test": "tap --no-check-coverage",
+    "test:dev": "tap -w --no-check-coverage",
+    "release": "pnpm run build && npm run test && npx standard-version --sign && git push --follow-tags origin main && npm publish --public"
+  },
+  "keywords": [
+    "electron",
+    "storage",
+    "store"
+  ],
+  "author": {
+    "email": "heyavaw@gmail.com",
+    "name": "Kexin Li",
+    "url": "https://kexin.li"
+  },
+  "repository": "github:anothertempore/piccolo",
+  "homepage": "https://github.com/anothertempore/piccolo#readme",
+  "bugs": {
+    "url": "https://github.com/anothertempore/piccolo/issues"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "18.11.17",
+    "@types/tap": "15.0.7",
+    "tap": "16.3.2",
+    "tsup": "6.5.0",
+    "typescript": "4.9.4"
+  }
+}
